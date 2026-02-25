@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
     const result = await pool.query('SELECT NOW() as heure_actuelle');
     const heureDb = result.rows[0].heure_actuelle;
     
-    res.send(`Hello Efrei/Miage ! Mon premier service fonctionne.<br>Connexion DB réussie ! Heure de la base : <strong>${heureDb}</strong>`);
+    res.send(`Hello ! Mon premier service fonctionne.<br>Connexion DB réussie ! Heure de la base : <strong>${heureDb}</strong>`);
   } catch (error) {
     res.status(500).send("Erreur de connexion à la DB : " + error.message);
   }
