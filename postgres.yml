@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13
+          env:
+            - name: POSTGRES_USER
+              value: "monutilisateur"
+            - name: POSTGRES_PASSWORD
+              value: "monmotdepasse"
+            - name: POSTGRES_DB
+              value: "mabase"
+          ports:
+            - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIP # ClusterIP suffit car seul nos microservices doivent y accéder
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
