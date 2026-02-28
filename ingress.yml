@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1 #DRISSI Anasse  RENOUT Quentin
 kind: Ingress
 metadata:
   name: mon-ingress
